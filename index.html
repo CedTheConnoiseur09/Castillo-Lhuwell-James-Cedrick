@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jelo Dakoykoy | Portfolio</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; font-family:Arial, sans-serif; }
+body { margin:0; overflow-x:hidden; color:white; background:#000; }
+
+/* Header */
+header {
+  width:100%; padding:20px 50px; display:flex; justify-content:space-between; align-items:center;
+  background:rgba(10,10,10,0.85); backdrop-filter: blur(10px);
+  position: fixed; top:0; z-index:100;
+}
+header h2 {color:#60a5fa;}
+nav ul { display:flex; list-style:none; gap:30px; }
+nav ul li { cursor:pointer; font-weight:bold; transition:0.3s; }
+nav ul li:hover { color:#60a5fa; }
+
+/* Sections */
+.section { width:100%; min-height:100vh; padding:120px 60px; display:none; opacity:0; transition:0.8s ease-out; position:absolute; top:0; left:0; background:#000; }
+.section.active { display:block; opacity:1; }
+
+/* Home */
+#home { position:relative; display:flex; justify-content:center; align-items:center; flex-direction:column; text-align:center; }
+#home h1 { font-size:50px; color:#60a5fa; animation: textGlow 3s infinite alternate; }
+#home p { margin-top:20px; font-size:20px; color:#ddd; max-width:700px; }
+
+/* Profile Image */
+.home-img img {
+  width:200px; height:200px; border-radius:50%; 
+  border:4px solid #00ffff; 
+  box-shadow:0 0 20px #00ffff; 
+  transition: all 0.3s ease;
+}
+.home-img img:hover { transform:scale(1.05); box-shadow:0 0 40px #00ffff; }
+
+/* Skills */
+#skills { text-align:center; }
+#skills h2 { color:#00ffff; margin-bottom:20px; font-size:32px; }
+.skills-section { margin-bottom:30px; }
+.skills-section h3 { color:#1E90FF; margin-bottom:15px; font-size:24px; }
+.skills-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(120px,1fr)); gap:20px; justify-items:center; }
+.skill { font-size:18px; padding:15px; background: rgba(0,255,255,0.1); border:2px solid #00ffff; border-radius:10px; transition:0.3s; }
+.skill:hover { transform:translateY(-5px); box-shadow:0 0 20px #00ffff; }
+
+/* Projects & Images */
+.projects-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:20px; margin-top:30px; }
+.project-card { position:relative; overflow:hidden; border-radius:12px; border:2px solid #1E90FF; box-shadow:0 0 20px #1E90FF; transition:0.3s; }
+.project-card:hover { transform:scale(1.05); box-shadow:0 0 40px #1E90FF; }
+.project-card img, .project-card video { width:100%; height:200px; object-fit:cover; }
+
+/* About */
+#about p { font-size:18px; line-height:1.8; color:#e0e0e0; font-style:italic; max-width:700px; margin:auto; }
+
+/* Contact */
+#contact p { font-size:18px; text-align:center; }
+
+/* Microchip 3D background canvas */
+#bgCanvas { position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1; }
+
+/* Animations */
+@keyframes textGlow {
+  0% { text-shadow:0 0 5px #00f,0 0 10px #0ff; }
+  50% { text-shadow:0 0 10px #0ff,0 0 20px #00f; }
+  100% { text-shadow:0 0 5px #00f,0 0 10px #0ff; }
+}
+
+/* Typing */
+#typing { color:#00ffff; font-size:28px; margin-top:15px; }
+
+/* Responsive */
+@media(max-width:768px){
+  header { flex-direction:column; gap:10px; padding:15px; }
+  #home h1 { font-size:36px; }
+  #home p { font-size:16px; padding:0 10px; }
+  #typing { font-size:20px; }
+  .home-img img { width:150px; height:150px; }
+}
+</style>
+</head>
+<body>
+
+<canvas id="bgCanvas"></canvas>
+
+<header>
+  <h2>Jelo Dakoykoy</h2>
+  <nav>
+    <ul>
+      <li onclick="showSection('home')">Home</li>
+      <li onclick="showSection('about')">About</li>
+      <li onclick="showSection('skills')">Skills</li>
+      <li onclick="showSection('projects')">Projects</li>
+      <li onclick="showSection('images')">Images</li>
+      <li onclick="showSection('contact')">Contact</li>
+    </ul>
+  </nav>
+</header>
+
+<!-- HOME -->
+<section id="home" class="section active">
+  <h1>Hi, I'm <span>JAN JELO DAKOYKOY</span></h1>
+  <div class="home-img" style="margin:20px 0;">
+    <img src="images/jelo.jpg" alt="Jelo Dakoykoy">
+  </div>
+  <div id="typing"></div>
+  <p>"Every day is a chance to learn, create, and innovate. I build my future one project at a time."</p>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section">
+  <h2>About Me</h2>
+  <p>"Hello! I'm <strong>Jelo Dakoykoy</strong>, a passionate student who loves learning new things, improving skills, and exploring creativity."</p>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="section">
+  <h2>My Skills</h2>
+  <div class="skills-section">
+    <h3>Programming Languages</h3>
+    <div class="skills-grid">
+      <div class="skill">PHP</div>
+      <div class="skill">C#</div>
+      <div class="skill">C</div>
+      <div class="skill">C++</div>
+      <div class="skill">HTML</div>
+      <div class="skill">CSS</div>
+      <div class="skill">JavaScript</div>
+    </div>
+  </div>
+  <div class="skills-section">
+    <h3>Frameworks & Tools</h3>
+    <div class="skills-grid">
+      <div class="skill">Bootstrap</div>
+      <div class="skill">AJAX</div>
+      <div class="skill">API</div>
+      <div class="skill">Laravel</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="section">
+  <h2>My Projects</h2>
+  <div class="projects-grid">
+    <!-- Screenshots -->
+    <div class="project-card"><img src="images/jelo8.jpg" alt="Project 1"></div>
+
+    <!-- Online Voting System Video -->
+    <div class="project-card">
+      <video controls width="100%">
+        <source src="images/online_voting.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- IMAGES GALLERY -->
+<section id="images" class="section">
+  <h2>My Images</h2>
+  <div class="projects-grid">
+    <div class="project-card"><img src="images/jelo6.jpg" alt="Image 1"></div>
+    <div class="project-card"><img src="images/jelo7.jpg" alt="Image 2"></div>
+    <div class="project-card"><img src="images/jelo3.jpg" alt="Image 3"></div>
+    <div class="project-card"><img src="images/jelo4.jpg" alt="Image 4"></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <h2>Contact</h2>
+  <p>Email: dakoykoyjelo542@gmail.com<br>Phone: 09556317839</p>
+</section>
+
+<script>
+// Section Toggle
+function showSection(id){
+  document.querySelectorAll(".section").forEach(s=>{ s.classList.remove("active"); });
+  document.getElementById(id).classList.add("active");
+}
+
+// 3D Microchip Background
+const canvas = document.getElementById('bgCanvas');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let chips = [];
+for(let i=0;i<150;i++){
+  chips.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,z:Math.random()*500,size:Math.random()*3+1});
+}
+
+function drawChips(){
+  ctx.fillStyle='rgba(0,0,0,0.2)';
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+  for(let chip of chips){
+    chip.z -=2;
+    if(chip.z<1){ chip.z=500; chip.x=Math.random()*canvas.width; chip.y=Math.random()*canvas.height; }
+    let sx = (chip.x - canvas.width/2)*(500/chip.z) + canvas.width/2;
+    let sy = (chip.y - canvas.height/2)*(500/chip.z) + canvas.height/2;
+    let s = chip.size*(500/chip.z);
+    ctx.fillStyle = '#00ffff';
+    ctx.fillRect(sx,sy,s,s);
+  }
+  requestAnimationFrame(drawChips);
+}
+drawChips();
+
+window.addEventListener('resize',()=>{ canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+
+// Typing Effect
+const roles = [
+  "I'm an Online Voting Developer",
+  "I'm enjoying coding using PHP & Laravel",
+  "I love Coding & Creativity"
+];
+let i = 0, j = 0;
+const typingElement = document.getElementById('typing');
+
+function type() {
+  if(j < roles[i].length){
+    typingElement.innerHTML = roles[i].substring(0,j+1);
+    j++;
+    setTimeout(type,80);
+  } else {
+    setTimeout(erase,1500);
+  }
+}
+
+function erase(){
+  if(j>0){
+    typingElement.innerHTML = roles[i].substring(0,j-1);
+    j--;
+    setTimeout(erase,50);
+  } else {
+    i = (i+1)%roles.length;
+    setTimeout(type,500);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", type);
+</script>
+
+</body>
+</html>
